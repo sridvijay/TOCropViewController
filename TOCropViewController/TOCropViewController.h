@@ -86,6 +86,8 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
  */
 @property (nonatomic, readonly) UIImage *image;
 
+@property (nonatomic, readonly) NSArray<UIImage*> *imageArray;
+
 /**
  The crop view managed by this view controller.
  */
@@ -180,6 +182,9 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
  @param image The image that will be used to crop.
  */
 - (instancetype)initWithImage:(UIImage *)image;
+
+
+- (instancetype)initWithImageArray:(NSArray *)imageArray;
 
 
 /**

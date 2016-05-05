@@ -25,6 +25,7 @@
 #import "TOCropScrollView.h"
 
 #define TOCROPVIEW_BACKGROUND_COLOR [UIColor colorWithWhite:0.12f alpha:1.0f]
+#define TOCROPVIEW_DYNAMIC_BLUR(x) [x respondsToSelector:@selector(setEffect:)]
 
 static const CGFloat kTOCropViewPadding = 14.0f;
 static const NSTimeInterval kTOCropTimerDuration = 0.8f;
@@ -90,9 +91,6 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 /* Reset state data */
 @property (nonatomic, assign) CGSize originalCropBoxSize; /* Save the original crop box size so we can tell when the content has been edited */
 @property (nonatomic, assign, readwrite) BOOL canReset;
-
-/* In iOS 9, a new dynamic blur effect became available. */
-@property (nonatomic, assign) BOOL dynamicBlurEffect;
 
 - (void)setup;
 
@@ -211,10 +209,6 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     self.editing = NO;
     self.cropBoxResizeEnabled = YES;
-    
-    /* Dynamic animation blurring is only possible on iOS 9, however since the API was available on iOS 8,
-     we'll need to manually check the system version to ensure that it's available. */
-    self.dynamicBlurEffect = ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending);
 }
 
 #pragma mark - View Layout -
@@ -605,7 +599,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 
 - (void)toggleTranslucencyViewVisible:(BOOL)visible
 {
-    if (self.dynamicBlurEffect == NO) {
+    if (TOCROPVIEW_DYNAMIC_BLUR(self.translucencyView) == NO) {
         self.translucencyView.alpha = visible ? 1.0f : 0.0f;
     }
     else {

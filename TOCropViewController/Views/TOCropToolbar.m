@@ -87,10 +87,7 @@
     }
     
     _doneTextButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [_doneTextButton setTitle:NSLocalizedStringFromTableInBundle(@"Done",
-                                                                 @"TOCropViewControllerLocalizable",
-                                                                 resourceBundle,
-                                                                 nil)
+    [_doneTextButton setTitle:@"Done"
                      forState:UIControlStateNormal];
     [_doneTextButton setTitleColor:[UIColor colorWithRed:1.0f green:0.8f blue:0.0f alpha:1.0f] forState:UIControlStateNormal];
     [_doneTextButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
@@ -521,40 +518,74 @@
 
 + (UIImage *)clampImage
 {
-    UIImage *clampImage = nil;
+    UIImage *clampImage;
     
-    UIGraphicsBeginImageContextWithOptions((CGSize){22,16}, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions((CGSize){22,21}, NO, 0.0f);
     {
         //// Color Declarations
-        UIColor* outerBox = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.553];
-        UIColor* innerBox = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 0.773];
+        UIColor* fillColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
         
-        //// Rectangle Drawing
-        UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRect: CGRectMake(0, 3, 13, 13)];
-        [UIColor.whiteColor setFill];
-        [rectanglePath fill];
-        
-        
-        //// Outer
+        //// Page-1
         {
-            //// Top Drawing
-            UIBezierPath* topPath = [UIBezierPath bezierPathWithRect: CGRectMake(0, 0, 22, 2)];
-            [outerBox setFill];
-            [topPath fill];
-            
-            
-            //// Side Drawing
-            UIBezierPath* sidePath = [UIBezierPath bezierPathWithRect: CGRectMake(19, 2, 3, 14)];
-            [outerBox setFill];
-            [sidePath fill];
+            //// noun_60958_cc
+            {
+                //// Shape Drawing
+                UIBezierPath* shapePath = [UIBezierPath bezierPath];
+                [shapePath moveToPoint: CGPointMake(19.37, 2.69)];
+                [shapePath addLineToPoint: CGPointMake(19.37, 0)];
+                [shapePath addLineToPoint: CGPointMake(17.93, 0)];
+                [shapePath addLineToPoint: CGPointMake(17.93, 2.69)];
+                [shapePath addLineToPoint: CGPointMake(15.3, 2.69)];
+                [shapePath addLineToPoint: CGPointMake(15.3, 4.15)];
+                [shapePath addLineToPoint: CGPointMake(17.93, 4.15)];
+                [shapePath addLineToPoint: CGPointMake(17.93, 6.84)];
+                [shapePath addLineToPoint: CGPointMake(19.37, 6.84)];
+                [shapePath addLineToPoint: CGPointMake(19.37, 4.15)];
+                [shapePath addLineToPoint: CGPointMake(22, 4.15)];
+                [shapePath addLineToPoint: CGPointMake(22, 2.69)];
+                [shapePath addLineToPoint: CGPointMake(19.37, 2.69)];
+                [shapePath closePath];
+                shapePath.miterLimit = 4;
+                
+                shapePath.usesEvenOddFillRule = YES;
+                
+                [fillColor setFill];
+                [shapePath fill];
+                
+                
+                //// Shape 2 Drawing
+                UIBezierPath* shape2Path = [UIBezierPath bezierPath];
+                [shape2Path moveToPoint: CGPointMake(16.98, 5.13)];
+                [shape2Path addLineToPoint: CGPointMake(14.35, 5.13)];
+                [shape2Path addLineToPoint: CGPointMake(14.35, 2.69)];
+                [shape2Path addLineToPoint: CGPointMake(4.78, 2.69)];
+                [shape2Path addLineToPoint: CGPointMake(4.78, 10.74)];
+                [shape2Path addLineToPoint: CGPointMake(19.37, 10.74)];
+                [shape2Path addLineToPoint: CGPointMake(19.37, 7.81)];
+                [shape2Path addLineToPoint: CGPointMake(16.98, 7.81)];
+                [shape2Path addLineToPoint: CGPointMake(16.98, 5.13)];
+                [shape2Path closePath];
+                shape2Path.miterLimit = 4;
+                
+                shape2Path.usesEvenOddFillRule = YES;
+                
+                [fillColor setFill];
+                [shape2Path fill];
+                
+                
+                //// Rectangle-path Drawing
+                UIBezierPath* rectanglepathPath = [UIBezierPath bezierPathWithRect: CGRectMake(0, 2.69, 3.83, 18.31)];
+                [fillColor setFill];
+                [rectanglepathPath fill];
+                
+                
+                //// Rectangle-path 2 Drawing
+                UIBezierPath* rectanglepath2Path = [UIBezierPath bezierPathWithRect: CGRectMake(4.78, 11.72, 14.59, 9.28)];
+                [fillColor setFill];
+                [rectanglepath2Path fill];
+            }
         }
-        
-        
-        //// Rectangle 2 Drawing
-        UIBezierPath* rectangle2Path = [UIBezierPath bezierPathWithRect: CGRectMake(14, 3, 4, 13)];
-        [innerBox setFill];
-        [rectangle2Path fill];
-        
+
         
         clampImage = UIGraphicsGetImageFromCurrentImageContext();
     }
