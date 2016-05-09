@@ -43,7 +43,7 @@
         if (angle != 0) {
             UIImageView *imageView = [[UIImageView alloc] initWithImage:self];
             imageView.layer.minificationFilter = @"nearest";
-            imageView.layer.magnificationFilter = @"neareset";
+            imageView.layer.magnificationFilter = @"nearest";
             imageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, angle * (M_PI/180.0f));
             CGRect rotatedRect = CGRectApplyAffineTransform(imageView.bounds, imageView.transform);
             UIView *containerView = [[UIView alloc] initWithFrame:(CGRect){CGPointZero, rotatedRect.size}];
@@ -56,6 +56,28 @@
             CGContextTranslateCTM(context, -frame.origin.x, -frame.origin.y);
             [self drawAtPoint:CGPointZero];
         }
+        
+        croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+    }
+    UIGraphicsEndImageContext();
+    
+    return croppedImage;
+}
+
+- (UIImage *)discardedImageWithFrame:(CGRect)frame {
+    UIImage *croppedImage = nil;
+    UIGraphicsBeginImageContextWithOptions(self.size, ![self hasAlpha], self.scale);
+    {
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+    
+        // draw original image into the context
+        [self drawAtPoint:CGPointZero];
+    
+    
+        CGRect rectangle = frame;
+        CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+        CGContextFillRect(context, rectangle);
         
         croppedImage = UIGraphicsGetImageFromCurrentImageContext();
     }

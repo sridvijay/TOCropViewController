@@ -325,6 +325,22 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     self.foregroundImageView.frame = [self.backgroundContainerView.superview convertRect:self.backgroundContainerView.frame toView:self.foregroundContainerView];
 }
 
+- (void)setUncropMode:(BOOL)uncropMode {
+    _uncropMode = uncropMode;
+    
+    if (_uncropMode) {
+        self.simpleMode = true;
+        self.overlayView.backgroundColor = [UIColor clearColor];
+        self.foregroundImageView.image = nil;
+        self.translucencyView.hidden = true;
+    } else {
+        self.simpleMode = false;
+        self.translucencyView.hidden = false;
+        self.overlayView.backgroundColor = [self.backgroundColor colorWithAlphaComponent:0.35f];
+        self.foregroundImageView.image = self.image;
+    }
+}
+
 - (void)updateCropBoxFrameWithGesturePoint:(CGPoint)point
 {
     CGRect frame = self.cropBoxFrame;

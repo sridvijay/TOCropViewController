@@ -132,7 +132,7 @@
     _resetButton = [UIButton buttonWithType:UIButtonTypeSystem];
     _resetButton.contentMode = UIViewContentModeCenter;
     _resetButton.tintColor = [UIColor whiteColor];
-    _resetButton.enabled = NO;
+    _resetButton.enabled = YES;
     [_resetButton setImage:[TOCropToolbar resetImage] forState:UIControlStateNormal];
     [_resetButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_resetButton];
@@ -476,38 +476,61 @@
 {
     UIImage *resetImage = nil;
     
-    UIGraphicsBeginImageContextWithOptions((CGSize){22,18}, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions((CGSize){22,21}, NO, 0.0f);
     {
+        //// Color Declarations
+        UIColor* fillColor = [UIColor colorWithRed: 0 green: 0 blue: 0 alpha: 1];
         
-        //// Bezier 2 Drawing
-        UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
-        [bezier2Path moveToPoint: CGPointMake(22, 9)];
-        [bezier2Path addCurveToPoint: CGPointMake(13, 18) controlPoint1: CGPointMake(22, 13.97) controlPoint2: CGPointMake(17.97, 18)];
-        [bezier2Path addCurveToPoint: CGPointMake(13, 16) controlPoint1: CGPointMake(13, 17.35) controlPoint2: CGPointMake(13, 16.68)];
-        [bezier2Path addCurveToPoint: CGPointMake(20, 9) controlPoint1: CGPointMake(16.87, 16) controlPoint2: CGPointMake(20, 12.87)];
-        [bezier2Path addCurveToPoint: CGPointMake(13, 2) controlPoint1: CGPointMake(20, 5.13) controlPoint2: CGPointMake(16.87, 2)];
-        [bezier2Path addCurveToPoint: CGPointMake(6.55, 6.27) controlPoint1: CGPointMake(10.1, 2) controlPoint2: CGPointMake(7.62, 3.76)];
-        [bezier2Path addCurveToPoint: CGPointMake(6, 9) controlPoint1: CGPointMake(6.2, 7.11) controlPoint2: CGPointMake(6, 8.03)];
-        [bezier2Path addLineToPoint: CGPointMake(4, 9)];
-        [bezier2Path addCurveToPoint: CGPointMake(4.65, 5.63) controlPoint1: CGPointMake(4, 7.81) controlPoint2: CGPointMake(4.23, 6.67)];
-        [bezier2Path addCurveToPoint: CGPointMake(7.65, 1.76) controlPoint1: CGPointMake(5.28, 4.08) controlPoint2: CGPointMake(6.32, 2.74)];
-        [bezier2Path addCurveToPoint: CGPointMake(13, 0) controlPoint1: CGPointMake(9.15, 0.65) controlPoint2: CGPointMake(11, 0)];
-        [bezier2Path addCurveToPoint: CGPointMake(22, 9) controlPoint1: CGPointMake(17.97, 0) controlPoint2: CGPointMake(22, 4.03)];
-        [bezier2Path closePath];
-        [UIColor.whiteColor setFill];
-        [bezier2Path fill];
-        
-        
-        //// Polygon Drawing
-        UIBezierPath* polygonPath = UIBezierPath.bezierPath;
-        [polygonPath moveToPoint: CGPointMake(5, 15)];
-        [polygonPath addLineToPoint: CGPointMake(10, 9)];
-        [polygonPath addLineToPoint: CGPointMake(0, 9)];
-        [polygonPath addLineToPoint: CGPointMake(5, 15)];
-        [polygonPath closePath];
-        [UIColor.whiteColor setFill];
-        [polygonPath fill];
-
+        //// Page-1
+        {
+            //// noun_60958_cc
+            {
+                //// Combined-Shape Drawing
+                UIBezierPath* combinedShapePath = [UIBezierPath bezierPath];
+                [combinedShapePath moveToPoint: CGPointMake(19.97, 2.64)];
+                [combinedShapePath addLineToPoint: CGPointMake(21.71, 0.83)];
+                [combinedShapePath addLineToPoint: CGPointMake(20.78, -0.14)];
+                [combinedShapePath addLineToPoint: CGPointMake(19.04, 1.67)];
+                [combinedShapePath addLineToPoint: CGPointMake(17.34, -0.1)];
+                [combinedShapePath addLineToPoint: CGPointMake(16.39, 0.89)];
+                [combinedShapePath addLineToPoint: CGPointMake(18.09, 2.66)];
+                [combinedShapePath addLineToPoint: CGPointMake(16.35, 4.48)];
+                [combinedShapePath addLineToPoint: CGPointMake(17.28, 5.44)];
+                [combinedShapePath addLineToPoint: CGPointMake(19.02, 3.63)];
+                [combinedShapePath addLineToPoint: CGPointMake(20.72, 5.41)];
+                [combinedShapePath addLineToPoint: CGPointMake(21.67, 4.42)];
+                [combinedShapePath addLineToPoint: CGPointMake(19.97, 2.64)];
+                [combinedShapePath closePath];
+                [combinedShapePath moveToPoint: CGPointMake(15.55, 5.84)];
+                [combinedShapePath addLineToPoint: CGPointMake(15.55, 3.51)];
+                [combinedShapePath addLineToPoint: CGPointMake(13.14, 3.51)];
+                [combinedShapePath addLineToPoint: CGPointMake(4.38, 3.51)];
+                [combinedShapePath addLineToPoint: CGPointMake(4.38, 11.21)];
+                [combinedShapePath addLineToPoint: CGPointMake(17.74, 11.21)];
+                [combinedShapePath addLineToPoint: CGPointMake(17.74, 8.41)];
+                [combinedShapePath addLineToPoint: CGPointMake(17.74, 5.84)];
+                [combinedShapePath addLineToPoint: CGPointMake(15.55, 5.84)];
+                [combinedShapePath closePath];
+                [combinedShapePath moveToPoint: CGPointMake(0, 3.51)];
+                [combinedShapePath addLineToPoint: CGPointMake(3.5, 3.51)];
+                [combinedShapePath addLineToPoint: CGPointMake(3.5, 21)];
+                [combinedShapePath addLineToPoint: CGPointMake(0, 21)];
+                [combinedShapePath addLineToPoint: CGPointMake(0, 3.51)];
+                [combinedShapePath closePath];
+                [combinedShapePath moveToPoint: CGPointMake(4.38, 12.14)];
+                [combinedShapePath addLineToPoint: CGPointMake(17.74, 12.14)];
+                [combinedShapePath addLineToPoint: CGPointMake(17.74, 21)];
+                [combinedShapePath addLineToPoint: CGPointMake(4.38, 21)];
+                [combinedShapePath addLineToPoint: CGPointMake(4.38, 12.14)];
+                [combinedShapePath closePath];
+                combinedShapePath.miterLimit = 4;
+                
+                combinedShapePath.usesEvenOddFillRule = YES;
+                
+                [fillColor setFill];
+                [combinedShapePath fill];
+            }
+        }
 
         resetImage = UIGraphicsGetImageFromCurrentImageContext();
     }

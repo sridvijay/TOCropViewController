@@ -110,6 +110,8 @@
  */
 @property (nonatomic, assign) BOOL gridOverlayHidden;
 
+@property (nonatomic, assign) BOOL uncropMode;
+
 /**
  Create a new instance of the crop view with the supplied image
  */

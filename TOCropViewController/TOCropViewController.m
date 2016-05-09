@@ -35,6 +35,7 @@
 @property (nonatomic, strong) UIView *snapshotView;
 @property (nonatomic, strong) TOCropViewControllerTransitioning *transitionController;
 @property (nonatomic, assign) BOOL inTransition;
+@property (nonatomic, assign) BOOL uncropMode;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -116,7 +117,7 @@
     self.toolbar.doneButtonTapped =     ^{ [weakSelf doneButtonTapped]; };
     self.toolbar.cancelButtonTapped =   ^{ [weakSelf cancelButtonTapped]; };
     
-    self.toolbar.resetButtonTapped =    ^{ [weakSelf resetCropViewLayout]; };
+    self.toolbar.resetButtonTapped =    ^{ [weakSelf uncropMode]; };
     self.toolbar.clampButtonTapped =    ^{ [weakSelf showAspectRatioDialog]; };
     
     self.toolbar.rotateCounterclockwiseButtonTapped =   ^{ [weakSelf rotateCropViewCounterclockwise]; };
@@ -129,6 +130,16 @@
 
     if (self.defaultAspectRatio != TOCropViewControllerAspectRatioOriginal) {
         [self setAspectRatio:self.defaultAspectRatio animated:NO];
+    }
+}
+
+- (void)uncropMode {
+    if (self.cropView.uncropMode == true) {
+        _uncropMode == false;
+        self.cropView.uncropMode = false;
+    } else {
+        _uncropMode == true;
+        self.cropView.uncropMode = true;
     }
 }
 
@@ -592,7 +603,11 @@
             image = self.image;
         }
         else {
-            image = [self.image croppedImageWithFrame:cropFrame angle:angle];
+            if (self.cropView.uncropMode == false) {
+                image = [self.image croppedImageWithFrame:cropFrame angle:angle];                
+            } else {
+                image = [self.image discardedImageWithFrame:cropFrame];
+            }
         }
         
         //dispatch on the next run-loop so the animation isn't interuppted by the crop operation
