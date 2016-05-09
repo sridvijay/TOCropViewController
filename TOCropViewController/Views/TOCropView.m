@@ -328,6 +328,8 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
 - (void)setUncropMode:(BOOL)uncropMode {
     _uncropMode = uncropMode;
     
+    self.gridOverlayView.uncropMode = uncropMode;
+    
     if (_uncropMode) {
         self.simpleMode = true;
         self.overlayView.backgroundColor = [UIColor clearColor];

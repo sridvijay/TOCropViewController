@@ -27,6 +27,8 @@
 /** Hides the interior grid lines, sans animation. */
 @property (nonatomic, assign) BOOL gridHidden;
 
+@property (nonatomic, assign) BOOL uncropMode;
+
 /** Add/Remove the interior horizontal grid lines. */
 @property (nonatomic, assign) BOOL displayHorizontalGridLines;
 

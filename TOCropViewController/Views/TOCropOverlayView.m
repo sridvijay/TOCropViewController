@@ -187,6 +187,66 @@ static const CGFloat kTOCropOverLayerCornerWidth = 20.0f;
 
 #pragma mark - Property methods
 
+- (void)setUncropMode:(BOOL)uncropMode {
+    _uncropMode = uncropMode;
+    
+    if (_uncropMode == false) {
+        [self setGridHidden:false];
+        [self.outerLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor whiteColor];
+        }];
+        [self.topLeftLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor whiteColor];
+        }];
+        [self.topRightLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor whiteColor];
+        }];
+        [self.bottomLeftLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor whiteColor];
+        }];
+        [self.bottomRightLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor whiteColor];
+        }];
+        if (_displayVerticalGridLines) {
+            self.verticalGridLines = @[[self createNewLineView], [self createNewLineView]];
+        } else {
+            self.verticalGridLines = @[];
+        }
+        
+        if (_displayHorizontalGridLines) {
+            self.horizontalGridLines = @[[self createNewLineView], [self createNewLineView]];
+        } else {
+            self.horizontalGridLines = @[];
+        }
+        
+        [self setNeedsDisplay];
+
+    } else {
+        [self setGridHidden:true];
+        [self.outerLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor redColor];
+        }];
+        [self.topLeftLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor redColor];
+        }];
+        [self.topRightLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor redColor];
+        }];
+        [self.bottomLeftLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor redColor];
+        }];
+        [self.bottomRightLineViews enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            lineView.backgroundColor = [UIColor redColor];
+        }];
+        [self.horizontalGridLines enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            [lineView removeFromSuperview];
+        }];
+        [self.verticalGridLines enumerateObjectsUsingBlock:^(UIView *__nonnull lineView, NSUInteger idx, BOOL * __nonnull stop) {
+            [lineView removeFromSuperview];
+        }];
+    }
+}
+
 - (void)setDisplayHorizontalGridLines:(BOOL)displayHorizontalGridLines {
     _displayHorizontalGridLines = displayHorizontalGridLines;
     

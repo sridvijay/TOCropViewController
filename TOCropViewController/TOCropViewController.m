@@ -137,7 +137,9 @@
     if (self.cropView.uncropMode == true) {
         _uncropMode == false;
         self.cropView.uncropMode = false;
+        self.toolbar.resetButton.tintColor = [UIColor whiteColor];
     } else {
+        self.toolbar.resetButton.tintColor = [UIColor redColor];
         _uncropMode == true;
         self.cropView.uncropMode = true;
     }
